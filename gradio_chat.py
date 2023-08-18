@@ -57,4 +57,11 @@ def predict(message, history):
         text += output["choices"][0]["text"]
         yield text
     
-gr.ChatInterface(predict).queue().launch()
+demo = gr.ChatInterface(
+    predict,
+    chatbot=gr.Chatbot(height=800),
+    textbox=gr.Textbox(placeholder="Can I help you?", container=False, scale=7),
+    title="Chinese Alpaca 2 base on LlaMA 13B Chat",
+).queue()
+
+demo.launch()
