@@ -61,7 +61,7 @@ demo = gr.ChatInterface(
     predict,
     chatbot=gr.Chatbot(height=800),
     textbox=gr.Textbox(placeholder="Can I help you?", container=False, scale=7),
-    title="Chinese Alpaca 2 base on LlaMA 13B Chat",
+    title="Chinese Alpaca2 Base On LlaMA 13B Chat",
 ).queue()
 
 demo.launch()

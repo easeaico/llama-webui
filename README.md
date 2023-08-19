@@ -1,2 +1,4 @@
 # llama-webui
-llama webui base on gradio
+Llama webui base on gradio
+
+![running example](example.png)
