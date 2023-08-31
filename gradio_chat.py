@@ -14,9 +14,8 @@ If a question does not make any sense, or is not factually coherent, explain why
 
 """
 
-# model_path = "../chinese-alpaca-2-13b-hf/ggml-model-q4_0.bin"
-model_path = "../llama-models/codellama-34b-instruct.Q4_K_M.gguf"
-gui_title = "Code LlaMA 34B Instruct"
+model_path = "../llama-models/codellama-13b-instruct.Q4_K_M.gguf"
+gui_title = "Code LlaMA 13B Instruct"
 llm = Llama(model_path=model_path, n_ctx=4096)
 
 def format_message(message, history, memory_limit=5):
@@ -50,7 +49,7 @@ def predict(message, history):
     
 demo = gr.ChatInterface(
     predict,
-    chatbot=gr.Chatbot(height=800),
+    chatbot=gr.Chatbot(height=900),
     textbox=gr.Textbox(placeholder="Can I help you?", container=False, scale=7),
     title=gui_title,
 ).queue()
