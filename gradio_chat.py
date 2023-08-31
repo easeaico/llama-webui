@@ -14,19 +14,10 @@ If a question does not make any sense, or is not factually coherent, explain why
 
 """
 
-llm = Llama(model_path="../chinese-alpaca-2-13b-hf/ggml-model-q4_0.bin")
-
-PARAMETERS = {
-    "temperature": 0.9,
-    "top_p": 0.95,
-    "repetition_penalty": 1.2,
-    "top_k": 50,
-    "truncate": 1000,
-    "max_new_tokens": 1024,
-    "seed": 42,
-    "stop_sequences": ["</s>"],
-}
-
+# model_path = "../chinese-alpaca-2-13b-hf/ggml-model-q4_0.bin"
+model_path = "../llama-models/codellama-34b-instruct.Q4_K_M.gguf"
+gui_title = "Code LlaMA 34B Instruct"
+llm = Llama(model_path=model_path, n_ctx=4096)
 
 def format_message(message, history, memory_limit=5):
     # always keep len(history) <= memory_limit
@@ -51,7 +42,7 @@ def format_message(message, history, memory_limit=5):
 def predict(message, history):
     query = format_message(message, history)
     text = ""
-    stream = llm(query, max_tokens=1024, stop=["</s>"], stream=True)
+    stream = llm(query, max_tokens=2048, stop=["</s>"], stream=True)
 
     for output in stream:
         text += output["choices"][0]["text"]
@@ -61,7 +52,7 @@ demo = gr.ChatInterface(
     predict,
     chatbot=gr.Chatbot(height=800),
     textbox=gr.Textbox(placeholder="Can I help you?", container=False, scale=7),
-    title="Chinese Alpaca2 Base On LlaMA 13B Chat",
+    title=gui_title,
 ).queue()
 
 demo.launch()
