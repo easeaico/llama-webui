@@ -14,8 +14,8 @@ If a question does not make any sense, or is not factually coherent, explain why
 
 """
 
-model_path = "../llama-models/codellama-13b-instruct.Q4_K_M.gguf"
-gui_title = "Code LlaMA 13B Instruct"
+model_path = "../Nous-Hermes-Llama2-70b/nous-hermes-llama2-70b.Q5_K_M.gguf"
+gui_title = "Nous Hermes LlaMA-2 70B"
 llm = Llama(model_path=model_path, n_ctx=4096)
 
 def format_message(message, history, memory_limit=5):
@@ -54,4 +54,4 @@ demo = gr.ChatInterface(
     title=gui_title,
 ).queue()
 
-demo.launch()
+demo.launch(share=True)
